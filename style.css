@@ -117,3 +117,52 @@ li a {
 #map {
 	height: 50%;
 }
+
+#map object {
+	-webkit-transform: scale(0.2875); /* Scaling down the original SVG */
+	-webkit-transform-origin: 0 0; /* Changing where it's scaled from to the origin instead of the center */
+
+	transform: scale(0.2875);
+	transform-origin: 0 0;
+}
+
+#hashtag-chart ol {
+	padding: 0;
+	padding-left: 0.125em;
+
+	margin: 0.25em;
+	margin-top: 1.25em;
+
+	list-style-type: none;
+}
+
+#hashtag-chart li {
+	height: 1em;
+	width: 100%;
+
+	margin: 0;
+	margin-bottom: 0.625em;
+}
+
+#hashtag-chart li .hashtag {
+	float: left;
+	width: 25%;
+
+	text-transform: uppercase;
+	font-family: Courier, serif;
+	font-size: 0.75em;
+	line-height: calc(0.75em * 2.166);
+	
+	-webkit-transition: 250ms linear;
+	transition: 250ms linear;
+}
+
+#hashtag-chart li .bar {
+	height: 1.25em;
+	width: 65%;
+
+	float: right;
+	
+	-webkit-transition: 250ms linear;
+	transition: 250ms linear;
+}
