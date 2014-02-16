@@ -50,6 +50,46 @@ html, body {
 	width: 43%;
 }
 
+#sotu-video {
+	width: 100%;
+}
+
+nav {
+	width: 100%	;
+	
+	margin-top: 1em;
+}
+
+nav ol {
+	text-align: center;
+
+	list-style-type: none; /* Getting rid of the typical bullets */
+
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline;
+
+	border-right: 1px #555 solid;
+
+	padding-right: 0.45em;
+	padding-left: 0.1875em;
+
+	text-transform: uppercase;
+	font-family: Courier, serif;
+	font-size: 0.9655em;
+}
+
+nav li:last-child {
+	border-right: none; /* Removing the border that creates the divider on the last hashtag element */
+}
+
+li a {
+	text-decoration: none; /* Removing the defaul styling of links (i.e. underling) */
+}
+
 
 /* Middle Panel */
 
