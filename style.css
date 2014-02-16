@@ -57,6 +57,16 @@ html, body {
 	width: 37%;
 }
 
+#sotu-transcript {
+	font-family: 'Crimson Text', serif;
+
+	overflow-y: auto;
+
+	height: 340px;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
 
 /* Right Panel */
 
