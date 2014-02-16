@@ -1,0 +1,66 @@
+/* Getting rid of default margins & paddings */
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+
+/* Hashtag Plot */
+
+#hashtag-plot {
+	width: 1280px;
+	height: 300px;
+
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 1em;
+}
+
+#scrub-bar {
+	position: relative;
+	left: 0;
+	visibility: hidden; /* We hide it so that it doesn't show up by default */
+	width: 2px;
+	height: 100%;
+	background-color: red;
+}
+
+
+#container {
+	width: 1280px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	overflow: hidden;
+}
+
+.panel {
+	float:left;
+	height: 350px;
+}
+
+
+/* Left Panel */
+
+#left {
+	width: 43%;
+}
+
+
+/* Middle Panel */
+
+#middle {
+	width: 37%;
+}
+
+
+/* Right Panel */
+
+#right {
+	width: 20%;
+}
+
+#map {
+	height: 50%;
+}
