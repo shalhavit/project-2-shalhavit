@@ -1,10 +1,12 @@
 var hashtagPlot = document.getElementById('hashtag-plot');
 var scrubBar = document.getElementById('scrub-bar');
+var SOTUvideo = document.getElementById('sotu-video');
 
 // Run hashtagMousemove every time the mouse moves above the hashtagPlot
 hashtagPlot.addEventListener('mousemove', hashtagMousemove, false);
 function hashtagMousemove(e) {
 	updateScrubBar(e);
+	updateVideo(e);
 }
 
 function updateScrubBar(e) {
@@ -14,6 +16,10 @@ function updateScrubBar(e) {
 	scrubBar.style.left = e.clientX - position(hashtagPlot).x; // e.clientX is the mouse position
 
 	scrubBar.fractionScrubbed = parseInt(scrubBar.style.left, 10)/hashtagPlot.offsetWidth;
+}
+
+function updateVideo(e) {
+	SOTUvideo.currentTime = SOTUvideo.duration * scrubBar.fractionScrubbed;
 }
 
 function position(element) {
