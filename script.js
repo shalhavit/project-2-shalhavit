@@ -68,6 +68,18 @@ function nearestStamp(fractionScrubbed) {
 	return timestamps[timestamps.length - 1];
 }
 
+
+////////////////////////////////////////////////////////////////////////////////
+// Adding the nav functionality for the video
+
+function navClick(e) {
+	var timestamp = parseInt(this.getAttribute('data-timestamp'), 10);
+	scrubBar.fractionScrubbed = (timestamp-videoOffset)/SOTUvideo.duration;
+	updateVideo(e);
+	updateTranscript(e);
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // Utility functions
 
