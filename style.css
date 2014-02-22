@@ -25,7 +25,7 @@ html, body {
 	visibility: hidden; /* We hide it so that it doesn't show up by default */
 	width: 2px;
 	height: 100%;
-	background-color: red;
+	background-color: rgb(0, 255, 61);
 }
 
 
