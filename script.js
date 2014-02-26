@@ -71,13 +71,16 @@ function updateTranscript(e) {
 function scrollToTimestamp(timestamp) {
 	var target = transcript.querySelector('#transcript-time-' + timestamp);
 	document.getElementById('sotu-transcript').scrollTop = target.offsetTop;
+//document.getElementById('sotu-transcript')
+ 	transcript.scrollTop = target.offsetTop;
+ 	target.style.backgroundColor="Yellow";
 }
 
 function nearestStamp(fractionScrubbed) {
 	// Figure out what the closest timestamp we have is to the current amount of scrubbing
 	var timestampEquivalent = fractionScrubbed * SOTUvideo.duration + videoOffset; // IF we had a timestamp, what would it be?
 	for (var i = 0; i < timestamps.length - 1; i++) {
-		if ( timestamps[i+1] > timestampEquivalent ) { // Find teh first timestamp our guess is greater than
+		if ( timestamps[i+1] > timestampEquivalent ) { // Find the first timestamp our guess is greater than
 			return timestamps[i];
 		}
 	}
@@ -125,6 +128,9 @@ window.onload = function () {
 document.getElementById('sotu-video').addEventListener("timeupdate", updatePage);
 function updatePage() {
 	scrubBar.style.left = parseInt(1280 * SOTUvideo.currentTime/SOTUvideo.duration) + "px";
+	scrubBar.fractionScrubbed = parseInt(scrubBar.style.left, 10)/hashtagPlot.offsetWidth;
+ 	scrollToTimestamp(nearestStamp(scrubBar.fractionScrubbed));
+ 
 	var dominantHashtag = dominantHashtagAt(SOTUvideo.currentTime);
 	recolorNation(dominantHashtag);
 	updateChart();
