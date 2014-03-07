@@ -300,8 +300,8 @@ function getTotalEngagement(interval, hashtag) {
 }
  
   
- document.getElementById('sotu-video').addEventListener("timeupdate", updatePage);
- function updatePage() {
+ document.getElementById('sotu-video').addEventListener("timeupdate", updateScrubWithVideo);
+ function updateScrubWithVideo() {
  
   
  	scrubBar.style.visibility = 'visible';
