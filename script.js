@@ -55,68 +55,8 @@ function updateScrubBar(e) {
 	scrubBar.style.left = e.clientX - position(hashtagPlot).x; // e.clientX is the mouse position
 
 	scrubBar.fractionScrubbed = parseInt(scrubBar.style.left, 10)/hashtagPlot.offsetWidth;
-//Scroll the trnascript with video
- 	scrollToTimestamp(nearestStamp(scrubBar.fractionScrubbed));
- 	highlightTimestamp(nextNearestStamp(scrubBar.fractionScrubbed));
- 	//document.getElementById('sotu-transcript').scrollTop += SOTUvideo.currentTime;
- 
- 	
- 	
- 	
- }
- 
- document.getElementById('sotu-transcript').onmouseover=function(){
- 	document.getElementById('sotu-video').removeEventListener("timeupdate", updateScrubWithVideo);
- 
- };
- 
- document.getElementById('sotu-transcript').onmouseout=function(){
- 	document.getElementById('sotu-video').addEventListener("timeupdate", updateScrubWithVideo);
- };
- 
- 
- //If clicking over a Paragraph the video will play in that moment
- var transcript = document.getElementById('sotu-transcript');
- function transcriptDivs() {
- 	var stampedDivs = transcript.querySelectorAll('div');
- 	var jumptoStamp=null;
- 	for (var i = 0; i < stampedDivs.length; i++) {
- 		console.log(stampedDivs[i].id);
- 		//document.onmouseover = function() { console.log(stampedDivs[i]); };
- 		stampedDivs[i].onclick=function(){
- 		// console.log(this.id);
- 
- 		jumptoStamp=parseInt(this.id.split('-')[2], 10);
- 		this.setAttribute('style','background-color:red;');
- 		updateVideoWithTranscript(jumptoStamp);
- 		updateScrubWithTranscript(jumptoStamp); // updateScrubWithVideo();
- 		};
- 	}
- }
- 
- transcriptDivs();
- 
- function updateVideoWithTranscript(parsedDivID){
- 	SOTUvideo.currentTime = parsedDivID-videoOffset;
- }
- 
- function updateScrubWithTranscript(parsedDivID){
- 	scrubBar.style.left = ((parsedDivID-videoOffset)*hashtagPlot.offsetWidth)/SOTUvideo.duration; 
- 
 }
-//scroll the video and scrubBar with transcript
- transcript.addEventListener('scroll', scrollVideo, false);
- function scrollVideo(e) {
- 
- 	updateVideoScrolling(e);
- }
- 
- 
- 
- 
- function updateVideoScrolling(e) {
- 	SOTUvideo.currentTime = document.getElementById('sotu-transcript').scrollTop;
- }
+
 function updateVideo(e) {
 	SOTUvideo.currentTime = SOTUvideo.duration * scrubBar.fractionScrubbed;
 }
@@ -130,9 +70,6 @@ function updateTranscript(e) {
 
 function scrollToTimestamp(timestamp) {
 	var target = transcript.querySelector('#transcript-time-' + timestamp);
-	//timestamps[i-1].setAttribute('style','background-color:red;');
- 	transcript.querySelector('#transcript-time-' + timestamp).setAttribute('style','background-color:yellow;');
- 	//timestamps[i+1].setAttribute('style','background-color:yellow;');
 	document.getElementById('sotu-transcript').scrollTop = target.offsetTop;
 //document.getElementById('sotu-transcript')
  	transcript.scrollTop = target.offsetTop;
@@ -149,26 +86,7 @@ function nearestStamp(fractionScrubbed) {
 	}
 	return timestamps[timestamps.length - 1];
 }
-function highlightTimestamp(timestamp) {
- 
- 	var target = transcript.querySelector('#transcript-time-' + timestamp);
-	//timestamps[i-1].setAttribute('style','background-color:red;');
- 	transcript.querySelector('#transcript-time-' + timestamp).setAttribute('style','background-color:green;');
- /timestamps[i+1].setAttribute('style','background-color:yellow;');
- 	
- }
- 
- 
- function nextNearestStamp(fractionScrubbed) {
- 	// Figure out what the closest timestamp we have is to the current amount of scrubbing
- var timestampEquivalent = fractionScrubbed * SOTUvideo.duration + videoOffset; // IF we had a timestamp, what would it be?
- 
- 	for (var i = 0; i < timestamps.length - 1; i++) {
- 		if ( timestamps[i+1] > timestampEquivalent ) { // Find the first timestamp our guess is greater than
- 			return timestamps[i];
- 		}
- 	}
- 	return timestamps[timestamps.length - 1];
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Adding the nav functionality for the video
@@ -212,7 +130,6 @@ function updatePage() {
 	scrubBar.style.left = parseInt(1280 * SOTUvideo.currentTime/SOTUvideo.duration) + "px";
 	scrubBar.fractionScrubbed = parseInt(scrubBar.style.left, 10)/hashtagPlot.offsetWidth;
  	scrollToTimestamp(nearestStamp(scrubBar.fractionScrubbed));
- 	highlightTimestamp(nextNearestStamp(scrubBar.fractionScrubbed));
  
 	var dominantHashtag = dominantHashtagAt(SOTUvideo.currentTime);
 	recolorNation(dominantHashtag);
@@ -380,7 +297,7 @@ function getTotalEngagement(interval, hashtag) {
 
 	return sum;
 }
-//Extension functions
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Utility functions
