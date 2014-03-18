@@ -144,7 +144,8 @@ function nearestStamp(fractionScrubbed) {
 	var timestampEquivalent = fractionScrubbed * SOTUvideo.duration + videoOffset; // IF we had a timestamp, what would it be?
 	for (var i = 0; i < timestamps.length - 1; i++) {
 		if ( timestamps[i+1] > timestampEquivalent ) { // Find the first timestamp our guess is greater than
-			return timestamps[i];
+			return timestamps[i-2];
+			updateTranscript(e);
 		}
 	}
 	return timestamps[timestamps.length - 1];
@@ -380,7 +381,22 @@ function getTotalEngagement(interval, hashtag) {
 
 	return sum;
 }
+<<<<<<< HEAD
 //Extension functions
+=======
+ 
+  
+ document.getElementById('sotu-video').addEventListener("timeupdate", updateScrubWithVideo);
+ function updateScrubWithVideo() {
+ 
+  
+ 	scrubBar.style.visibility = 'visible';
+ 	scrubBar.style.left = SOTUvideo.currentTime*hashtagPlot.offsetWidth/SOTUvideo.duration; 
+ 
+ 	scrubBar.fractionScrubbed = parseInt(scrubBar.style.left, 10)/hashtagPlot.offsetWidth;
+ 	
+ }
+>>>>>>> FETCH_HEAD
 
 ////////////////////////////////////////////////////////////////////////////////
 // Utility functions
