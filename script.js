@@ -15,6 +15,17 @@ function extractTimestamps() {
 
 	return timestamps;
 }
+// for each timestamp div add a mouseover listener
+ var stampedDivs = transcript.querySelectorAll('div');
+ for (var i = 0; i < stampedDivs.length; i++) {
+ 	stampedDivs[i].addEventListener('mouseenter', scrollMiddle, false);
+ }
+ 
+ // scroll/scrub to the appropriate time
+ function scrollMiddle(e) {
+ 	scrollTime = parseInt(this.id.split('-')[2], 10);
+ 	SOTUvideo.currentTime = scrollTime - videoOffset;
+ }
 
 // Initialize these for loading later, after window.onload
 var nation = null;
@@ -44,10 +55,12 @@ function hashtagMousemove(e) {
 
 hashtagPlot.addEventListener('mouseout', playVideo, false);
 function playVideo(e) {
-	scrubBar.style.visibility = "visible";
-	SOTUvideo.play();
+		SOTUvideo.play();
 }
-
+SOTUvideo.addEventListener("timeupdate", function(e) {
+ 	scrubBar.style.left = parseInt(1280 * SOTUvideo.currentTime/SOTUvideo.duration) + "px";
+ });
+ 
 function updateScrubBar(e) {
 	// A function to make the scrubBar follow the mouse
 
