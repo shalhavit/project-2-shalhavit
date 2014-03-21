@@ -275,8 +275,8 @@ function updateChart() {
 		}
 		else {
 			sibling = bar.parentNode.getElementsByClassName('hashtag')[0];
-			sibling.style.color = '#d3d3d3';
-			bar.style.backgroundColor = '#d3d3d3';
+			sibling.style.color = 'black';
+			bar.style.backgroundColor = 'black';
 		}
 
 	}
