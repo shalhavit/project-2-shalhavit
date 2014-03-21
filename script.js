@@ -80,7 +80,14 @@ function updateVideo(e) {
 function updateTranscript(e) {
 	scrollToTimestamp(nearestStamp(scrubBar.fractionScrubbed));
 }
-
+function updateTranscriptByCurrenttime(e) {
+ 		for (var i = 0; i < timestamps.length - 1; i++) {
+ 		if ( timestamps[i+1] > Math.ceil(SOTUvideo.currentTime) + videoOffset) { // Find the first timestamp our guess is greater than
+ 			scrollToTimestamp(timestamps[i]);
+ 			break;
+ 		}
+ 	}
+ }
 function scrollToTimestamp(timestamp) {
 	var target = transcript.querySelector('#transcript-time-' + timestamp);
 	document.getElementById('sotu-transcript').scrollTop = target.offsetTop;
@@ -148,6 +155,7 @@ function updatePage() {
 	recolorNation(dominantHashtag);
 	updateChart();
 }
+
 
 function dominantHashtagAt(time) {
 	// A function to figure out the dominant hashtag at a given time
